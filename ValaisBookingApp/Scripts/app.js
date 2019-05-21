@@ -2,6 +2,9 @@
     var self = this;
     self.hotels = ko.observableArray();
     self.error = ko.observable();
+    self.detail = ko.observable();
+
+    
 
     var hotelsUri = '/api/hotels/';
 
@@ -15,6 +18,12 @@
             data: data ? JSON.stringify(data) : null
         }).fail(function (jqXHR, textStatus, errorThrown) {
             self.error(errorThrown);
+        });
+    }
+
+    self.getHotelDetail = function (item) {
+        ajaxHelper(hotelsUri + item.IdHotel, 'GET').done(function (data) {
+            self.detail(data);
         });
     }
 

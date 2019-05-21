@@ -17,7 +17,7 @@
                 <ul class="list-unstyled" data-bind="foreach: hotels">
                     <li>
                         <strong><span data-bind="text: Name"></span></strong>: <span data-bind="text: Location"></span>
-                        <small><a href="#">Details</a></small>
+                        <small><a href="#" data-bind="click: $parent.getHotelDetail">Details</a></small>
                     </li>
                 </ul>
             </div>
@@ -25,8 +25,29 @@
         <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-7">
         <!-- TODO: Hotel details -->
+        <!-- ko if:detail() -->
+
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Detail</h2>
+                </div>
+                <table class="table" >
+                    <tr border="1"><td>Hotel</td><td data-bind="text: detail().Name"></td></tr>
+                    <tr><td>Location</td><td data-bind="text: detail().Location"></td></tr>
+                    <tr><td>Category</td><td data-bind="text: detail().Category"></td></tr>
+                    <tr><td>Has Wifi</td><td data-bind="text:  (detail().HasWifi)?'Yes':'No'"></td></tr>
+                    <tr><td>Has Parking</td><td data-bind="text: (detail().HasParking)?'Yes':'No'"></td></tr>
+                    <tr><td>Phone</td><td data-bind="text: detail().Phone"> </td></tr>
+                    <tr><td>Email</td><td data-bind="text: detail().Email"></td></tr>
+                    <tr><td>Website</td><td data-bind="text: detail().Website"></td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- /ko -->
     </div>
 
     <div class="col-md-4">
